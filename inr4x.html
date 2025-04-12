@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>SNSデモ</title>
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            color: white;
+  
+            flex-direction: row;
+        }
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            right: 0;
+
+          height: calc(100vh - 50px); 
+            width: 15%;
+            background-color: 	#121214;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            z-index: 10;
+
+            
+        }
+        .channel {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .channel:hover {
+            background-color: #7289da;
+            padding: 5px;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            height: 50px;
+            width: 100%;
+            left: 0;
+            background-color: #23272a;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 10; 
+            position: fixed;
+        }
+        .chat-area {
+            margin-top: 50px;
+            flex: 1;
+                    /*     background-color: #36393f;　*/
+            background-color: #1A1A1E;
+            padding: 20px;
+            overflow-y: auto;
+
+            
+    
+        }
+        .message {
+            margin-bottom: 10px;
+            margin-left: 250px;
+        }
+        .message:hover {
+            background-color: 	#121214;
+            padding: 5px;
+        }
+
+
+        .title {
+            font-size: large;
+            margin-left: 250px;
+        }
+
+        .left-side {
+            position: fixed;
+            top: 50px;
+            left: 0;
+
+            height: calc(100vh - 50px); 
+            width: 15%;
+            background-color: 	#121214;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            z-index: 10;
+
+        }
+
+        .buzz {
+
+            height: calc(100vh - 50px); 
+            border-radius: 6px; 
+
+    background: #393A41;     
+    position: fixed; /* 位置を固定 */
+    top: 60%;
+    right: 1%;
+    left: 84%;
+    padding: 15px; 
+  
+    color: rgb(38, 137, 170); /* 必要に応じて文字色を指定 */
+    z-index: 11;
+    margin-bottom: 60px; /* 隙間を広げる */
+}
+
+
+.buzzTx {
+    margin-bottom: 30px; /* 隙間を広げる */
+    background-color: 	#393A41;
+}
+        
+/* 位置を固定 
+.Toukou {
+    position: relative;
+    z-index: 100; 
+    margin-top: 46%;
+   right: 50%;
+    }
+    */
+.A{
+     /* 必要に応じてrelativeにする */
+     position: fixed;
+    z-index: 100; /* 他の要素よりも高い値を設定 */
+    top: 90%;
+left: 40%;
+}
+
+
+
+
+        @media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* モバイルでは全幅を使用 */
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+
+
+}
+
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        メッセージ:<input type="text" name="message" class="A">
+
+    </form>
+
+
+    <div class="main-content">
+        <div class="header">SNS デモ</div>
+        <div class="chat-area">
+            <div class="title">雑談チャット</div>
+            <div class="message">ユーザー1: こんにちは！</div>
+            <div class="message">ユーザー2: こんばんは！</div>
+            <div class="message">ユーザー3: 初投稿かきこ</div>
+
+        </div> 
+    </div>
+
+
+
+
+
+    <div class="sidebar">
+        <div class="channel"># TOP</div>
+        <div class="channel"># フォローの投稿</div>
+        <div class="channel"># 創作総合</div>     
+        <div class="channel">&nbsp;&nbsp;&nbsp;&nbsp;イラスト</div>        
+        <div class="channel">&nbsp;&nbsp;&nbsp;&nbsp;DTM</div>    
+        <div class="channel">&nbsp;&nbsp;&nbsp;&nbsp;その他</div>    
+        <div class="channel"># 言語総合</div>
+        <div class="channel"># ゲーマー</div>
+
+        <div class="channel"># ランダム表示</div>
+    </div>
+
+
+    <div class="left-side">
+        <div class="channel">Your Guild</div>
+        <div class="channel">@開発者サバ</div>
+        <div class="channel">@言語総合</div>     
+        <div class="channel">@嫌儲鯖</div>
+        <div class="channel">@運営鯖</div>
+        <div class="channel">@FPS鯖</div>
+
+        <div class="channel">+ Add New Guild</div>
+    </div>
+    <div class="buzz">  
+
+        <div class="buzzTx">バズってる</div>
+        <div class="buzzTx">Music:</div>
+        <div class="buzzTx">HardBassJinja &nbsp;&nbsp;▶</div>
+        <div class="buzzTx">Picture</div>
+        
+    </div>
+    
+
+
+</body>
+</html>
