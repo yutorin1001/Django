@@ -1,11 +1,4 @@
 
-
-
-        
-
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>SNSデモ</title>
+
+<script>
+    document.addEventListener("copy", function() {
+  window.alert("コピーしたよ");
+});
+</script>
+
+
     <style>
 
         body {
@@ -24,6 +25,23 @@
   
             flex-direction: row;
         }
+
+        .logout {
+    position: absolute;
+
+    z-index: 101;
+    margin-left: 60%;
+}
+
+
+.username {
+    position: absolute;
+    z-index: 101;
+    left : 80%;
+}
+
+
+
 
         .Area {
   
@@ -78,10 +96,11 @@
         .header {
             height: 50px;
             width: 100%;
-            left: 0;
+    
             background-color: #23272a;
             display: flex;
             align-items: center;
+            left: 0;
             padding: 0 20px;
             z-index: 10; 
             position: fixed;
@@ -249,6 +268,8 @@ left: 40%;
 .post-form button:hover {
     background-color: #5b6eae;
 }
+
+
 }
 
     </style>
@@ -256,11 +277,19 @@ left: 40%;
 <body>
 
 
-
-
+   
 
     <div class="main-content">
-        <div class="header">SNS デモ</div>
+        <div class="header"><a class="tii">SNS デモ  </a>
+               <a class="logout"  onclick="window.location.href='/accounts/logout/';">ログアウト</a>
+
+               <a class = "username">
+               {{request.user.username}}さん 
+               </a>
+             </div>
+
+
+ 
         <div class="chat-area">
 
             <form method="post" action="{% url 'post_create' %}">
@@ -273,6 +302,7 @@ left: 40%;
             <ul>
                 {% for post in posts %}
                     <li class="message">
+                        
                      <strong class="message">
                         {{ post.content }}<br>
                         <small class="time">{{ post.created_at }}</small>
@@ -311,7 +341,7 @@ left: 40%;
         <div class="channel">@言語総合</div>     
         <div class="channel">@嫌儲鯖</div>
         <div class="channel">@運営鯖</div>
-        <div class="channel">@FPS鯖</div>
+        <div class="channel"  onclick="window.location.href='https://google.com';">@FPS鯖</a></div>
 
         <div class="channel">+ Add New Guild</div>
     </div>

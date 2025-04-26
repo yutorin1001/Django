@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'board',
+    'django.contrib.sites',         # 追加
+    'allauth',                      # 追加
+    'allauth.account',              # 追加
+    'allauth.socialaccount', 
 ]
 
 MIDDLEWARE = [
@@ -47,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'bb.urls'
@@ -120,3 +125,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = (
+   'django.contrib.auth.backends.ModelBackend',            #おまじない
+   'allauth.account.auth_backends.AuthenticationBackend',  #おまじない（ライブラリ使用のために追記）
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+#ACCOUNT_USERNAME_REQUIRED = True 
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_LOGIN_METHODS = {'username'}
+SITE_ID = 1 
+
+LOGIN_REDIRECT_URL = 'post_list' 
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'

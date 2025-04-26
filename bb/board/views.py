@@ -16,3 +16,10 @@ def post_create(request):
     else:
         form = PostForm()
     return render(request, 'board/post_list.html', {'form': form})
+
+
+def post_prof(request):
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'board/prof.html', {'posts' : posts})
+    
+
