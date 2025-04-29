@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile_user.username }}のページ</title>
+</head>
+<body>
+    <h1>{{ profile_user.username }}さんのページ</h1>
+    <p>登録日: {{ profile_user.date_joined }}</p>
+
+    <h2>投稿一覧</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.content }}</strong><br>
+                <small>投稿日: {{ post.created_at }}</small>
+            </li>
+        {% empty %}
+            <p>投稿がありません。</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'post_list' %}">投稿一覧に戻る</a>
+</body>
+</html>
+
+
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -454,74 +483,11 @@ document.addEventListener('DOMContentLoaded', function () {
              </div>
 
 
- <strong>
-    <div class="chat-area" id="cl">
-
-        <form method="post" action="{% url 'post_create' %}">
-            {% csrf_token %}
-            <textarea class="Area" name="content" rows="3" placeholder="内容" required></textarea>
-            <button type="submit" class="submit">投稿</button>
-        </form>
-
-        <ul>
-            {% for post in posts %}
-        <div class="message">
-                   
-                    <a href="{% url 'detail' post.id %}" class="post-item">
-                        <a href="{% url 'user_profile' post.user.username %}">
-                        <strong class="message">{{ post.user.username }}</strong>
-                        </a>
-                        <br><br>
-                        <strong class="message-2">
-                        {{ post.content }}<br>
-                        </strong>
-                        <small class="time">{{ post.created_at }}</small>
-                    </a>
-
-
-                    <button class="like-btn" data-post-id="{{ post.id }}">
-                        {% if user in post.like.all %}
-                            取り消す
-                        {% else %}
-                            いいね
-                        {% endif %}
-                    </button>
-                    <span class="like-count">{{ post.like.count }}</span>件のいいね
-                    
-                    
-                    <div class="message">
-                        <button class="showFormButton">返信を表示</button>
-                        <div class="form-container">
-                            <form class="reply-form" data-post-id="{{ post.id }}">
-                                {% csrf_token %}
-                                <textarea name="content" rows="3" placeholder="返信を入力してください"></textarea>
-                                <button type="submit">送信</button>
-                            </form>
-
-                            <div class="replies">
-                                <h3>返信一覧</h3>
-                                {% for reply in post.replies.all %}
-                                    <div class="reply">
-                                        <a href="{% url 'user_profile' post.user.username %}">
-                                        <strong>{{ reply.user.username }}</strong></a>: {{ reply.content }}<br>
-                                        <small>{{ reply.created_at }}</small><br><br>
-                                    </div>
-                                {% endfor %}
-                            </div>
-
-
-                        </div>
-                    </div>
-
 
 
 
   
-        </div>
 
-                        <br><br>
-                {% endfor %}
-        </ul>
     
     </div> 
 
